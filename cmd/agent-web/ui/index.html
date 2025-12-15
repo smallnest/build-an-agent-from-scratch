@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoSkills Agent</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>GoSkills Agent</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="panel left-panel">
+                <div class="panel-header">
+                    <i class="fas fa-compass"></i> 研究计划
+                </div>
+                <div id="plan-container">
+                    <div class="empty-state">暂无计划</div>
+                </div>
+            </div>
+
+
+            <div class="panel right-panel">
+                <div class="window-header">
+                    <div class="window-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="window-tabs">
+                        <div class="tab active" data-tab="terminal">终端</div>
+                    </div>
+                </div>
+                <div id="terminal-container" class="tab-content active">
+                    <div class="log-line system">> 正在初始化 Agent...</div>
+                    <div class="log-line system">> Agent 初始化完成</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="input-area">
+            <form id="chat-form">
+                <div class="input-row">
+                    <textarea id="user-input" placeholder="在此输入您的请求(比如介绍北京这个城市)..." rows="1" required></textarea>
+                    <button type="submit" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="options-row">
+            <label class="option-label"><input type="checkbox" id="ppt-checkbox" disabled> PPT 演示</label>
+            <label class="option-label"><input type="checkbox" id="podcast-checkbox" disabled> 播客</label>
+        </div>
+
+        <div id="history-sessions-container">
+            <h3>历史会话</h3>
+            <div id="history-sessions-list" class="history-list">
+                <!-- Sessions will be loaded here -->
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Templates -->
+    <template id="plan-item-template">
+        <div class="plan-item pending">
+            <div class="status-icon"><i class="far fa-circle"></i></div>
+            <div class="task-details">
+                <div class="task-desc"></div>
+                <div class="task-meta"></div>
+            </div>
+        </div>
+    </template>
+
+    <template id="plan-review-modal-template">
+        <div class="modal-overlay">
+            <div class="modal">
+                <h3>审查计划</h3>
+                <div class="plan-preview"></div>
+                <div class="modal-actions">
+                    <button class="approve-btn">批准</button>
+                    <button class="modify-btn">修改</button>
+                </div>
+                <div class="modification-input" style="display: none;">
+                    <textarea placeholder="输入您的修改意见..."></textarea>
+                    <button class="submit-mod-btn">提交</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="sessions-modal-template">
+        <div class="modal-overlay">
+            <div class="modal">
+                <h3>历史会话</h3>
+                <div class="sessions-list">
+                    <div class="loading-spinner">加载中...</div>
+                </div>
+                <div class="modal-actions">
+                    <button class="close-btn">关闭</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
